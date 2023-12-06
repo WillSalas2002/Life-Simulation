@@ -14,11 +14,8 @@ public class Renderer {
 
                 Coordinate coordinate = new Coordinate(i, j);
                 Entity entity = GameMap.entityCoordinateMap.get(coordinate);
-                if (entity != null) {
-                    count++;
-                }
 
-                System.out.print(getLabelOfEachEntity(entity));
+                System.out.print(getSignOfEntity(entity));
             }
             System.out.println();
         }
@@ -26,21 +23,11 @@ public class Renderer {
 
     }
 
-    private String getLabelOfEachEntity(Entity entity) {
+    private String getSignOfEntity(Entity entity) {
 
-        if (entity instanceof Grass) {
-            return "\uD83C\uDF3F";
-        } else if (entity instanceof Predator) {
-            return "\uD83E\uDD81";
-        } else if (entity instanceof Herbivore) {
-            return "\uD83D\uDC11";
-        } else if (entity instanceof Rock) {
-            return "\uD83E\uDEA8";
-        } else if (entity instanceof Tree) {
-            return "\uD83C\uDF33";
+        if (entity != null) {
+            return entity.toString();
         }
-
         return "⬛";
     }
-
 }
