@@ -19,7 +19,7 @@ public class GameMap {
         action.initAction(this);
     }
 
-    public static List<Coordinate> excludingGrass() {
+    public static <T extends Entity> List<Coordinate> getEntityCoordinates(Class<T> entityType) {
 
         List<Coordinate> result = new ArrayList<>();
 
@@ -28,14 +28,16 @@ public class GameMap {
             Entity value = entry.getValue();
             Coordinate key = entry.getKey();
 
-            if (!(value instanceof Grass)) {
+            if (entityType.isInstance(value)) {
                 result.add(key);
+                break;
             }
         }
         return result;
     }
 
-    public static List<Coordinate> getGrassCoordinate() {
+    public static <T extends Entity> List<Coordinate> getExcludingCoordinates(Class<T> entityType) {
+
         List<Coordinate> result = new ArrayList<>();
 
         for (Map.Entry<Coordinate, Entity> entry : entityCoordinateMap.entrySet()) {
@@ -43,8 +45,9 @@ public class GameMap {
             Entity value = entry.getValue();
             Coordinate key = entry.getKey();
 
-            if (value instanceof Grass) {
+            if (!entityType.isInstance(value)) {
                 result.add(key);
+                break;
             }
         }
         return result;
