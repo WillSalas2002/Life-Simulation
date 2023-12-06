@@ -1,10 +1,12 @@
 package com.ilkhamjumatov;
 
-/**
- * Hello world!
- */
+import com.ilkhamjumatov.simulation.Simulation;
+
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        Simulation simulation = new Simulation();
+        simulation.startSimulation();
+
     }
 }
