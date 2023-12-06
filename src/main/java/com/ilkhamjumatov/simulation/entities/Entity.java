@@ -4,8 +4,12 @@ import com.ilkhamjumatov.simulation.Coordinate;
 
 public abstract class Entity {
 
-    protected String name;
+    protected String sing;
     protected Coordinate coordinate;
+
+    public Entity() {
+
+    }
 
     public Coordinate getCoordinate() {
         return coordinate;
@@ -13,10 +17,6 @@ public abstract class Entity {
 
     public void setCoordinate(Coordinate coordinate) {
         this.coordinate = coordinate;
-    }
-
-    public Entity() {
-
     }
 
     public abstract String toString();

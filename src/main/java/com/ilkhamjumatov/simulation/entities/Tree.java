@@ -3,11 +3,11 @@ package com.ilkhamjumatov.simulation.entities;
 public class Tree extends Entity {
 
     public Tree() {
-        name = "Tree";
+        sing = "\uD83C\uDF33";
     }
 
     @Override
     public String toString() {
-        return name;
+        return sing;
     }
 }

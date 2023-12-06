@@ -6,7 +6,7 @@ import com.ilkhamjumatov.simulation.GameMap;
 import java.util.*;
 public class PathFinder {
 
-    public static List<Coordinate> breadthFirstSearch(Coordinate source, List<Coordinate> targets, List<Coordinate> exclude) {
+    public List<Coordinate> breadthFirstSearch(Coordinate source, List<Coordinate> targets, List<Coordinate> exclude) {
 
         Queue<LinkedList<Coordinate>> queue = new LinkedList<>();
         Set<Coordinate> visited = new HashSet<>();
@@ -43,7 +43,7 @@ public class PathFinder {
         return null; // Если путь не найден, возвращаем null
     }
 
-    private static Set<Coordinate> getNeighbours(Coordinate coordinate, List<Coordinate> exclude) {
+    private Set<Coordinate> getNeighbours(Coordinate coordinate, List<Coordinate> exclude) {
 
         Set<Coordinate> coordinateSet = new HashSet<>();
 
@@ -56,11 +56,11 @@ public class PathFinder {
 
                 Coordinate offer = new Coordinate(coordinate.getX() + i, coordinate.getY() + j);
 
-                if (offer.getX() >= 10 || offer.getX() < 0) {
+                if (offer.getX() >= 20 || offer.getX() < 0) {
                     continue;
                 }
 
-                if (offer.getY() >= 10 || offer.getY() < 0) {
+                if (offer.getY() >= 20 || offer.getY() < 0) {
                     continue;
                 }
 
