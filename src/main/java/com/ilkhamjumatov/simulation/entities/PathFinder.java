@@ -4,6 +4,7 @@ import com.ilkhamjumatov.simulation.Coordinate;
 import com.ilkhamjumatov.simulation.GameMap;
 
 import java.util.*;
+
 public class PathFinder {
 
     public List<Coordinate> breadthFirstSearch(Coordinate source, List<Coordinate> targets, List<Coordinate> exclude) {
@@ -56,11 +57,11 @@ public class PathFinder {
 
                 Coordinate offer = new Coordinate(coordinate.getX() + i, coordinate.getY() + j);
 
-                if (offer.getX() >= 20 || offer.getX() < 0) {
+                if (offer.getX() >= 10 || offer.getX() < 0) {
                     continue;
                 }
 
-                if (offer.getY() >= 20 || offer.getY() < 0) {
+                if (offer.getY() >= 10 || offer.getY() < 0) {
                     continue;
                 }
 

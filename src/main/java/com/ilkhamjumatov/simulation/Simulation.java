@@ -3,24 +3,24 @@ package com.ilkhamjumatov.simulation;
 import com.ilkhamjumatov.simulation.entities.Herbivore;
 
 public class Simulation {
-    private GameMap gameMap;
-    private Renderer renderer = new Renderer();
-    private Action action = new Action();
+    private final GameMap gameMap;
+    private final Renderer renderer = new Renderer();
+    private final Action[] action = {new InitAction(), new TurnAction()};
 
     public Simulation() {
-        gameMap = new GameMap(20, 20);
 
-        action.initAction(gameMap);
+        gameMap = new GameMap(10, 10, action[0]);
         renderer.renderMap(gameMap);
     }
 
     public void nextTurn() {
-        action.turnAction();
+
+        action[1].execute(gameMap);
         renderer.renderMap(gameMap);
     }
 
     public void startSimulation() {
-        while (GameMap.getEntityCoordinates(Herbivore.class).size() != 0) {
+        while (gameMap.getEntityCoordinates(Herbivore.class).size() != 0) {
             nextTurn();
         }
     }

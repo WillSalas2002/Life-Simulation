@@ -13,7 +13,7 @@ public class Renderer {
             for (int j = 0; j < gameMap.getColumns(); j++) {
 
                 Coordinate coordinate = new Coordinate(i, j);
-                Entity entity = GameMap.entityCoordinateMap.get(coordinate);
+                Entity entity = gameMap.getEntityCoordinateMap().get(coordinate);
 
                 System.out.print(getSignOfEntity(entity));
             }
