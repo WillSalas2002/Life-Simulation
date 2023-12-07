@@ -4,11 +4,11 @@ import com.ilkhamjumatov.simulation.Coordinate;
 import com.ilkhamjumatov.simulation.GameMap;
 
 import java.util.List;
-import java.util.Map;
 
 public class Predator extends Creature {
 
     private final int powerOfAttack;
+
     public Predator() {
         hp = 90;
         sing = "\uD83E\uDD81";
@@ -21,25 +21,30 @@ public class Predator extends Creature {
     }
 
     @Override
-    public void makeMove(Coordinate coordinate) {
+    public void makeMove(GameMap gameMap, Coordinate coordinate) {
 
-        List<Coordinate> coordinates = pathFinder.breadthFirstSearch(coordinate, GameMap.getEntityCoordinates(Herbivore.class), GameMap.getExcludingCoordinates(Herbivore.class));
+        List<Coordinate> excludingHerbivore = gameMap.getExcludingCoordinates(Herbivore.class);
+        List<Coordinate> herbivoreCoordinates = gameMap.getEntityCoordinates(Herbivore.class);
+        List<Coordinate> coordinates = pathFinder.breadthFirstSearch(coordinate, herbivoreCoordinates, excludingHerbivore);
 
         if (coordinates == null) {
             hp -= 30;
+            if (hp <= 0) {
+                gameMap.removeEntity(coordinate);
+            }
         } else if (coordinates.size() == 1) {
-            Herbivore herbivore = (Herbivore) GameMap.entityCoordinateMap.get(coordinates.get(0));
-            herbivore.hp -= 30;
+            Herbivore herbivore = (Herbivore) gameMap.getEntityCoordinateMap().get(coordinates.get(0));
+            herbivore.hp -= powerOfAttack;
 
             if (herbivore.hp <= 0) {
-                GameMap.entityCoordinateMap.remove(coordinates.get(0));
+                gameMap.removeEntity(coordinates.get(0));
             }
 
         } else {
             Coordinate newCoordinate = coordinates.get(0);
-            GameMap.entityCoordinateMap.remove(coordinate);
+            gameMap.getEntityCoordinateMap().remove(coordinate);
             this.setCoordinate(newCoordinate);
-            GameMap.entityCoordinateMap.put(newCoordinate, this);
+            gameMap.getEntityCoordinateMap().put(newCoordinate, this);
         }
     }
 }
