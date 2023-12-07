@@ -1,6 +1,7 @@
 package com.ilkhamjumatov.simulation.entities;
 
 import com.ilkhamjumatov.simulation.Coordinate;
+import com.ilkhamjumatov.simulation.GameMap;
 
 public abstract class Creature extends Entity {
 
@@ -11,6 +12,6 @@ public abstract class Creature extends Entity {
         pathFinder = new PathFinder();
     }
 
-    public abstract void makeMove(Coordinate coordinate);
+    public abstract void makeMove(GameMap gameMap, Coordinate coordinate);
 
 }
