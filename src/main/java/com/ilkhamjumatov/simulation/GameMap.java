@@ -1,25 +1,23 @@
 package com.ilkhamjumatov.simulation;
 
 import com.ilkhamjumatov.simulation.entities.Entity;
-import com.ilkhamjumatov.simulation.entities.Grass;
-import com.ilkhamjumatov.simulation.entities.Herbivore;
 
+import java.time.temporal.TemporalUnit;
 import java.util.*;
 
 public class GameMap {
 
-    private int rows;
-    private int columns;
-    private Action action = new Action();
-    public static Map<Coordinate, Entity> entityCoordinateMap = new HashMap<>();
+    private final int rows;
+    private final int columns;
+    private final Map<Coordinate, Entity> entityCoordinateMap = new HashMap<>();
 
-    public GameMap(int rows, int columns) {
+    public GameMap(int rows, int columns, Action action) {
         this.rows = rows;
         this.columns = columns;
-        action.initAction(this);
+        action.execute(this);
     }
 
-    public static <T extends Entity> List<Coordinate> getEntityCoordinates(Class<T> entityType) {
+    public <T extends Entity> List<Coordinate> getEntityCoordinates(Class<T> entityType) {
 
         List<Coordinate> result = new ArrayList<>();
 
@@ -30,13 +28,12 @@ public class GameMap {
 
             if (entityType.isInstance(value)) {
                 result.add(key);
-                break;
             }
         }
         return result;
     }
 
-    public static <T extends Entity> List<Coordinate> getExcludingCoordinates(Class<T> entityType) {
+    public <T extends Entity> List<Coordinate> getExcludingCoordinates(Class<T> entityType) {
 
         List<Coordinate> result = new ArrayList<>();
 
@@ -47,25 +44,29 @@ public class GameMap {
 
             if (!entityType.isInstance(value)) {
                 result.add(key);
-                break;
             }
         }
         return result;
+    }
+
+    public void addEntity(Entity randomEntity) {
+        Coordinate coordinate = randomEntity.getCoordinate();
+        entityCoordinateMap.put(coordinate, randomEntity);
+    }
+
+    public void removeEntity(Coordinate coordinate) {
+        entityCoordinateMap.remove(coordinate);
+    }
+
+    public Map<Coordinate, Entity> getEntityCoordinateMap() {
+        return entityCoordinateMap;
     }
 
     public int getRows() {
         return rows;
     }
 
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
     public int getColumns() {
         return columns;
-    }
-
-    public void setColumns(int columns) {
-        this.columns = columns;
     }
 }
