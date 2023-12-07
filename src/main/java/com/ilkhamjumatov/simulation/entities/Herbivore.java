@@ -20,21 +20,26 @@ public class Herbivore extends Creature {
     }
 
     @Override
-    public void makeMove(Coordinate coordinate) {
+    public void makeMove(GameMap gameMap, Coordinate coordinate) {
 
-        List<Coordinate> excludingGrass = GameMap.getExcludingCoordinates(Grass.class);
-        List<Coordinate> grassCoordinates = GameMap.getEntityCoordinates(Grass.class);
+        boolean a = (this.coordinate == coordinate);
+
+        List<Coordinate> excludingGrass = gameMap.getExcludingCoordinates(Grass.class);
+        List<Coordinate> grassCoordinates = gameMap.getEntityCoordinates(Grass.class);
         List<Coordinate> coordinates = pathFinder.breadthFirstSearch(coordinate, grassCoordinates, excludingGrass);
 
         if (coordinates == null) {
 //            hp -= 30;
+//            if (hp <= 0) {
+//                GameMap.removeEntity(coordinate);
+//            }
         } else if (coordinates.size() == 1) {
-            GameMap.entityCoordinateMap.remove(coordinates.get(0));
+            gameMap.removeEntity(coordinates.get(0));
         } else {
             Coordinate newCoordinate = coordinates.get(0);
-            GameMap.entityCoordinateMap.remove(coordinate);
+            gameMap.getEntityCoordinateMap().remove(coordinate);
             this.setCoordinate(newCoordinate);
-            GameMap.entityCoordinateMap.put(newCoordinate, this);
+            gameMap.getEntityCoordinateMap().put(newCoordinate, this);
         }
     }
 }
