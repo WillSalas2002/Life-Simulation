@@ -6,11 +6,9 @@ public class Renderer {
 
     public void renderMap(GameMap gameMap) {
 
-        int count = 0;
+        for (int i = 0; i < GameMap.ROWS; i++) {
 
-        for (int i = 0; i < gameMap.getRows(); i++) {
-
-            for (int j = 0; j < gameMap.getColumns(); j++) {
+            for (int j = 0; j < GameMap.COLUMNS; j++) {
 
                 Coordinate coordinate = new Coordinate(i, j);
                 Entity entity = gameMap.getEntityCoordinateMap().get(coordinate);
@@ -19,8 +17,6 @@ public class Renderer {
             }
             System.out.println();
         }
-        System.out.println(count);
-
     }
 
     private String getSignOfEntity(Entity entity) {

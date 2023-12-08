@@ -2,7 +2,6 @@ package com.ilkhamjumatov.simulation.entities;
 
 import com.ilkhamjumatov.simulation.Coordinate;
 import com.ilkhamjumatov.simulation.GameMap;
-
 import java.util.List;
 
 public class Predator extends Creature {

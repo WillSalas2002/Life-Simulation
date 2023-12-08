@@ -2,12 +2,9 @@ package com.ilkhamjumatov.simulation.entities;
 
 import com.ilkhamjumatov.simulation.Coordinate;
 import com.ilkhamjumatov.simulation.GameMap;
-
 import java.util.List;
-import java.util.Map;
 
 public class Herbivore extends Creature {
-
 
     public Herbivore() {
         hp = 90;
@@ -22,17 +19,15 @@ public class Herbivore extends Creature {
     @Override
     public void makeMove(GameMap gameMap, Coordinate coordinate) {
 
-        boolean a = (this.coordinate == coordinate);
-
         List<Coordinate> excludingGrass = gameMap.getExcludingCoordinates(Grass.class);
         List<Coordinate> grassCoordinates = gameMap.getEntityCoordinates(Grass.class);
         List<Coordinate> coordinates = pathFinder.breadthFirstSearch(coordinate, grassCoordinates, excludingGrass);
 
         if (coordinates == null) {
-//            hp -= 30;
-//            if (hp <= 0) {
-//                GameMap.removeEntity(coordinate);
-//            }
+            this.hp -= 30;
+            if (this.hp <= 0) {
+                gameMap.removeEntity(coordinate);
+            }
         } else if (coordinates.size() == 1) {
             gameMap.removeEntity(coordinates.get(0));
         } else {
