@@ -7,13 +7,11 @@ import java.util.*;
 
 public class GameMap {
 
-    private final int rows;
-    private final int columns;
+    public static final int ROWS = 20;
+    public static final int COLUMNS = 20;
     private final Map<Coordinate, Entity> entityCoordinateMap = new HashMap<>();
 
-    public GameMap(int rows, int columns, Action action) {
-        this.rows = rows;
-        this.columns = columns;
+    public GameMap(Action action) {
         action.execute(this);
     }
 
@@ -51,7 +49,7 @@ public class GameMap {
 
     public void addEntity(Entity randomEntity) {
         Coordinate coordinate = randomEntity.getCoordinate();
-        entityCoordinateMap.put(coordinate, randomEntity);
+        entityCoordinateMap.putIfAbsent(coordinate, randomEntity);
     }
 
     public void removeEntity(Coordinate coordinate) {
@@ -62,11 +60,4 @@ public class GameMap {
         return entityCoordinateMap;
     }
 
-    public int getRows() {
-        return rows;
-    }
-
-    public int getColumns() {
-        return columns;
-    }
 }

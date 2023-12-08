@@ -57,11 +57,11 @@ public class PathFinder {
 
                 Coordinate offer = new Coordinate(coordinate.getX() + i, coordinate.getY() + j);
 
-                if (offer.getX() >= 10 || offer.getX() < 0) {
+                if (offer.getX() >= GameMap.ROWS || offer.getX() < 0) {
                     continue;
                 }
 
-                if (offer.getY() >= 10 || offer.getY() < 0) {
+                if (offer.getY() >= GameMap.COLUMNS || offer.getY() < 0) {
                     continue;
                 }
 

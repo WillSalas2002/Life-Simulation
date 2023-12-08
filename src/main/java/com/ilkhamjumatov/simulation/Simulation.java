@@ -9,7 +9,7 @@ public class Simulation {
 
     public Simulation() {
 
-        gameMap = new GameMap(10, 10, action[0]);
+        gameMap = new GameMap(action[0]);
         renderer.renderMap(gameMap);
     }
 
