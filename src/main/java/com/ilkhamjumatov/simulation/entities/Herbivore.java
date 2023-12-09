@@ -24,7 +24,7 @@ public class Herbivore extends Creature {
         List<Coordinate> coordinates = pathFinder.breadthFirstSearch(coordinate, grassCoordinates, excludingGrass);
 
         if (coordinates == null) {
-            this.hp -= 30;
+            this.hp -= 1;
             if (this.hp <= 0) {
                 gameMap.removeEntity(coordinate);
             }

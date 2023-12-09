@@ -1,5 +1,7 @@
-package com.ilkhamjumatov.simulation;
+package com.ilkhamjumatov.simulation.actions;
 
+import com.ilkhamjumatov.simulation.Coordinate;
+import com.ilkhamjumatov.simulation.GameMap;
 import com.ilkhamjumatov.simulation.entities.Creature;
 import com.ilkhamjumatov.simulation.entities.Entity;
 

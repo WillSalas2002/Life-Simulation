@@ -17,6 +17,7 @@ public class Renderer {
             }
             System.out.println();
         }
+        System.out.println("============================================");
     }
 
     private String getSignOfEntity(Entity entity) {
